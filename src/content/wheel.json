@@ -1,0 +1,38 @@
+[
+  {
+    "slug": "test-1",
+    "name": "Test Item One"
+  },
+  {
+    "slug": "test-2",
+    "name": "Test Item Two"
+  },
+  {
+    "slug": "test-3",
+    "name": "Test Item Three"
+  },
+  {
+    "slug": "test-4",
+    "name": "Test Item Four"
+  },
+  {
+    "slug": "test-5",
+    "name": "Test Item Five"
+  },
+  {
+    "slug": "test-6",
+    "name": "Test Item Six"
+  },
+  {
+    "slug": "test-7",
+    "name": "Test Item Seven"
+  },
+  {
+    "slug": "test-8",
+    "name": "Test Item Eight"
+  },
+  {
+    "slug": "test-9",
+    "name": "Test Item Nine"
+  }
+]
