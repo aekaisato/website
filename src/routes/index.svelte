@@ -3,6 +3,7 @@
   import AboutMeBox from "src/AboutMeBox.svelte";
   import { selection, selectionTweened } from "src/stores/wheel-selection";
   import wheelContent from "src/content/wheel.json";
+import BackgroundImage from "src/components/BackgroundImage.svelte";
 
   const updatePlus = () => {
     // selectionTweened.update(n => (n + 1) % wheelContent.length); // wraparound
@@ -39,6 +40,9 @@
 </svelte:head>
 
 <div class="container flex" on:wheel={handleScroll}>
+  <div class="bg-img-box flex">
+    <BackgroundImage />
+  </div>
   <div class="project-wheel flex">
     <ProjectWheel />
   </div>
@@ -61,6 +65,7 @@
     display: flex;
   }
   .container {
+    position: relative;
     overflow: hidden;
     height: 100vh;
     width: 100vw;
@@ -81,6 +86,13 @@
   }
   .index-content {
     flex: 3;
+  }
+  .bg-img-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
   }
 </style>
 

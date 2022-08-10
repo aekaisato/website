@@ -66,6 +66,7 @@
     width: 410vh;
     height: 410vh;
     left: -403.7vh;
+    opacity: .5;
   }
   .title-list {
     flex-direction: column;
