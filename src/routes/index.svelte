@@ -3,7 +3,7 @@
   import AboutMeBox from "src/AboutMeBox.svelte";
   import { selection, selectionTweened } from "src/stores/wheel-selection";
   import wheelContent from "src/content/wheel.json";
-import BackgroundImage from "src/components/BackgroundImage.svelte";
+  import BackgroundImage from "src/components/BackgroundImage.svelte";
 
   const updatePlus = () => {
     // selectionTweened.update(n => (n + 1) % wheelContent.length); // wraparound

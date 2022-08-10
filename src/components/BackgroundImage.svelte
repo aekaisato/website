@@ -1,9 +1,7 @@
 <script lang="ts">
   import wheelContent from "src/content/wheel.json";
   import { selection, selectionTweened } from "src/stores/wheel-selection";
-  import { tweened } from "svelte/motion";
-  import { quadInOut } from "svelte/easing";
-  import { fly } from 'svelte/transition';
+  import { fade } from 'svelte/transition';
 
   const imgFolder = "/bg-img/"
   const fallback = imgFolder + "fallback.webp";
@@ -13,6 +11,7 @@
 </script>
 
 <div class="container flex">
+  {#key $selection}
   <img
     src={imgFolder + wheelContent[$selection].slug + ".webp"}
     alt={"Screenshot of " + wheelContent[$selection].name}
@@ -20,7 +19,11 @@
     height="100%"
     class="obj-fit-cover img-blur"
     on:error={handleError}
+    transition:fade={{
+      duration: 400,
+    }}
   />
+  {/key}
 </div>
 
 <style>
@@ -34,6 +37,9 @@
   }
   .obj-fit-cover {
     object-fit: cover;
+    position: absolute;
+    top: 0;
+    bottom: 0;
   }
   .img-blur {
     filter: blur(25px) brightness(0.7);
