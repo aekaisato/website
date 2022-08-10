@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import aboutMeContent from "src/content/about-me.txt?raw";
 
   const tablerUrl = "https://cdn.jsdelivr.net/npm/@tabler/icons@latest/icons/";
@@ -21,7 +21,7 @@
   ];
 </script>
 
-<div class="container">
+<div class="container flex">
   <div class="flex content-box">
     <p class="text-content">
       {aboutMeContent}
@@ -50,7 +50,6 @@
 <style>
   .container {
     background-color: black;
-    display: flex;
     flex: 1;
     flex-direction: row;
     justify-content: center;
@@ -65,9 +64,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-  }
-  .flex {
-    display: flex;
   }
   .invert {
     filter: invert();
