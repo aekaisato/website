@@ -22,6 +22,7 @@
     transition:fade={{
       duration: 400,
     }}
+    draggable={false}
   />
   {/key}
 </div>
