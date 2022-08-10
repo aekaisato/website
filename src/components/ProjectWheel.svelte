@@ -38,8 +38,8 @@
         style={`left: ${calculatePositionX(i, $selectionTweened)}vh; top: ${calculatePositionY(i, $selectionTweened)}vh; transform: translateY(-50%)`}
       >
         <h2
-          class="title-text"
-          style={`opacity: ${calculateOpacity(i, $selectionTweened)}; font-size: ${calculateFontSize(i, $selectionTweened)}em`}
+          class="title-text unselect"
+          style={`opacity: ${calculateOpacity(i, $selectionTweened)}; font-size: ${calculateFontSize(i, $selectionTweened)}em;`}
         >{wc.name}</h2>
       </div>
     {/each}
@@ -73,5 +73,8 @@
   }
   .title-text {
     color: white;
+  }
+  .unselect {
+    user-select: none;
   }
 </style>
