@@ -5,12 +5,17 @@
   import { onDestroy, SvelteComponent } from "svelte";
   import TablerIcon from "./TablerIcon.svelte";
   import { format, parseISO } from "date-fns";
+  import fallbackContent from "src/content/wheel-content/fallback-content.svx";
 
   let svxContent: SvelteComponent;
 
   // woah is this janky dynamic imports?! heck yeah!
   const unsubSelection = selection.subscribe(async (value) => {
-    svxContent = (await import(`../content/wheel-content/${wheelContent[value].slug}-content.svx`)).default;
+    try {
+      svxContent = (await import(`../content/wheel-content/${wheelContent[value].slug}-content.svx`)).default;
+    } catch (e) {
+      svxContent = fallbackContent;
+    }
   });
   onDestroy(unsubSelection);
 

@@ -1,47 +1,8 @@
 [
   {
-    "slug": "test-1",
-    "name": "Test Item One",
-    "date": "2020-07-28"
-  },
-  {
-    "slug": "test-2",
-    "name": "Test Item Two",
-    "date": "1920-08-28"
-  },
-  {
-    "slug": "test-3",
-    "name": "Test Item Three",
-    "date": "2010-08-28"
-  },
-  {
-    "slug": "test-4",
-    "name": "Test Item Four",
-    "date": "2020-08-18"
-  },
-  {
-    "slug": "test-5",
-    "name": "Test Item Five",
-    "date": "2029-09-28"
-  },
-  {
-    "slug": "test-6",
-    "name": "Test Item Six",
-    "date": "2120-08-30"
-  },
-  {
-    "slug": "test-7",
-    "name": "Test Item Seven",
-    "date": "2021-08-22"
-  },
-  {
-    "slug": "test-8",
-    "name": "Test Item Eight",
-    "date": "1020-08-28"
-  },
-  {
-    "slug": "test-9",
-    "name": "Test Item Nine",
-    "date": "2020-09-28"
+    "slug": "viridos",
+    "name": "ViriDOS",
+    "date": "2021-03-05",
+    "tags": ["programming", "game-design", "filmmaking", "video-editing", "music", "ui-design"]
   }
 ]
