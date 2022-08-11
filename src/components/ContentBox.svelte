@@ -6,13 +6,11 @@
   import TablerIcon from "./TablerIcon.svelte";
   import { format, parseISO } from "date-fns";
 
-  const contentPath = "../content/wheel-content/"
-
   let svxContent: SvelteComponent;
 
   // woah is this janky dynamic imports?! heck yeah!
   const unsubSelection = selection.subscribe(async (value) => {
-    svxContent = (await import(contentPath + wheelContent[value].slug + ".svx")).default;
+    svxContent = (await import(`../content/wheel-content/${wheelContent[value].slug}-content.svx`)).default;
   });
   onDestroy(unsubSelection);
 
