@@ -1,7 +1,7 @@
 <script lang="ts">
   import aboutMeContent from "src/content/about-me.txt?raw";
+  import TablerIcon from "src/components/TablerIcon.svelte";
 
-  const tablerUrl = "https://cdn.jsdelivr.net/npm/@tabler/icons@latest/icons/";
   const socialLinks = [
     {
       name: "GitHub",
@@ -34,12 +34,11 @@
           href={sl.link}
           target="_blank"
           rel="noopener noreferrer"
-          class="flex"
+          class="flex invert"
         >
-          <img
-            src={tablerUrl + sl.icon + ".svg"}
+          <TablerIcon
+            icon={sl.icon}
             alt={sl.name}
-            class="invert"
           />
         </a>
       </div>
@@ -54,6 +53,8 @@
     flex-direction: row;
     justify-content: center;
     align-self: stretch;
+    border-radius: 8px;
+    z-index: 1;
   }
   .content-box {
     flex: 7;

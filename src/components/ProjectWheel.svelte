@@ -36,6 +36,7 @@
       <div 
         class="absolute"
         style={`left: ${calculatePositionX(i, $selectionTweened)}vh; top: ${calculatePositionY(i, $selectionTweened)}vh; transform: translateY(-50%)`}
+        on:click={() => selectionTweened.set(i)}
       >
         <h2
           class="title-text unselect"
@@ -54,6 +55,7 @@
     flex-direction: row;
     justify-content: center;
     align-self: stretch;
+    z-index: 1;
   }
   .absolute {
     position: absolute;

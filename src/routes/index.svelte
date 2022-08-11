@@ -1,9 +1,10 @@
 <script lang="ts">
   import ProjectWheel from "src/components/ProjectWheel.svelte";
-  import AboutMeBox from "src/AboutMeBox.svelte";
+  import AboutMeBox from "src/components/AboutMeBox.svelte";
   import { selection, selectionTweened } from "src/stores/wheel-selection";
   import wheelContent from "src/content/wheel.json";
   import BackgroundImage from "src/components/BackgroundImage.svelte";
+  import ContentBox from "src/components/ContentBox.svelte";
 
   const updatePlus = () => {
     // selectionTweened.update(n => (n + 1) % wheelContent.length); // wraparound
@@ -39,23 +40,30 @@
   <meta name="description" content="Portfolio page for Aiden Sato" />
 </svelte:head>
 
-<div class="container flex" on:wheel={handleScroll}>
-  <div class="bg-img-box flex">
+<div class="container flex">
+  <div class="bg-img-box flex" on:wheel|preventDefault={handleScroll}>
     <BackgroundImage />
   </div>
-  <div class="project-wheel flex">
+  <div class="project-wheel flex" on:wheel|preventDefault={handleScroll}>
     <ProjectWheel />
   </div>
   <div class="index-content flex">
+    <div class="flex index-content-top">
+      <ContentBox />
+    </div>
+    <div class="flex index-content-bottom">
+      <div class="whatever-box">
 
-  </div>
-  <div class="about-me flex">
-    <AboutMeBox />
+      </div>
+      <div class="about-me-box flex">
+        <AboutMeBox />
+      </div>
+    </div>
   </div>
 </div>
 
 <style>
-  :global(p) {
+  :global(p, div, span) {
     font-family: uncut_sansregular;
   }
   :global(h1, h2, h3, h4, h5) {
@@ -73,19 +81,31 @@
     flex: 1;
     background-color: #555555;
   }
-  .about-me {
-    position: absolute;
-    right: 3vh;
-    bottom: 3vh;
-    width: 35vw;
-    height: 25vh;
-    flex: 1;
-  }
   .project-wheel {
     flex: 1;
   }
   .index-content {
     flex: 3;
+    flex-direction: column;
+  }
+  .index-content-top {
+    flex: 3;
+    margin: 3vh;
+  }
+  .index-content-bottom {
+    flex: 1;
+    margin-bottom: 3vh;
+    flex-direction: row;
+  }
+  .whatever-box {
+    flex: 1;
+    margin-left: 3vh;
+    margin-right: 1.5vh;
+  }
+  .about-me-box {
+    flex: 1;
+    margin-right: 3vh;
+    margin-left: 1.5vh;
   }
   .bg-img-box {
     position: absolute;
