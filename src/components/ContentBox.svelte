@@ -74,7 +74,7 @@
   .sub-box {
     flex-direction: row;
     align-items: center;
-    margin-bottom: 0.2em;
+    padding-bottom: 0.5em;
   }
   h1 {
     margin-top: 0;
