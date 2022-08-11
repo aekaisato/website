@@ -1,7 +1,7 @@
 <script lang="ts">
   import ProjectWheel from "src/components/ProjectWheel.svelte";
   import AboutMeBox from "src/components/AboutMeBox.svelte";
-  import { selection, selectionTweened } from "src/stores/wheel-selection";
+  import { selection, selectionTweened } from "src/functions/wheel-selection";
   import wheelContent from "src/content/wheel.json";
   import BackgroundImage from "src/components/BackgroundImage.svelte";
   import ContentBox from "src/components/ContentBox.svelte";

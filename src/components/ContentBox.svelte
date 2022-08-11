@@ -1,6 +1,6 @@
 <script lang="ts">
   import wheelContent from "src/content/wheel.json";
-  import { selection, selectionTweened } from "src/stores/wheel-selection";
+  import { selection, selectionTweened } from "src/functions/wheel-selection";
   import { fade } from 'svelte/transition';
   import { onDestroy, SvelteComponent } from "svelte";
   import TablerIcon from "./TablerIcon.svelte";

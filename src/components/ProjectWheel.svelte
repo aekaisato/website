@@ -1,6 +1,6 @@
 <script lang="ts">
   import wheelContent from "src/content/wheel.json";
-  import { selection, selectionTweened } from "src/stores/wheel-selection";
+  import { selection, selectionTweened } from "src/functions/wheel-selection";
 
   export const maxOnScreen = 7; // this should be odd
 
