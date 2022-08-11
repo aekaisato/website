@@ -1,5 +1,6 @@
 <script lang="ts">
-  import wheelContent from "src/content/wheel.json";
+  // import wheelContent from "src/content/wheel.json";
+  import wheelContent from "src/functions/filter";
   import { selection, selectionTweened } from "src/functions/wheel-selection";
   import { fade } from 'svelte/transition';
 
