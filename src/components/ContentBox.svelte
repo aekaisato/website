@@ -20,19 +20,21 @@
 <div class="container flex">
   {#key $selection}
   <div class="flex content-box" transition:fade>
-    <h1>{wheelContent[$selection].name}</h1>
-    <div class="flex sub-box">
-      <span style="filter: invert(0.35); display: inline;">
-        <TablerIcon
-          icon="clock"
-          alt="Date created"
-          width={20}
-          style="vertical-align: bottom"
-        />
-        {format(parseISO(wheelContent[$selection].date), "LLLL d, Y")}
-      </span>
+    <div>
+      <h1>{wheelContent[$selection].name}</h1>
+      <div class="flex sub-box">
+        <span style="filter: invert(0.35); display: inline;">
+          <TablerIcon
+            icon="clock"
+            alt="Date created"
+            width={20}
+            style="vertical-align: bottom"
+          />
+          {format(parseISO(wheelContent[$selection].date), "LLLL d, Y")}
+        </span>
+      </div>
+      <svelte:component this={svxContent} />
     </div>
-    <svelte:component this={svxContent} />
   </div>
   {/key}
 </div>
