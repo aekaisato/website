@@ -52,8 +52,7 @@
       <ContentBox />
     </div>
     <div class="flex index-content-bottom">
-      <div class="whatever-box">
-
+      <div class="whatever-box flex" on:wheel|preventDefault={handleScroll}>
       </div>
       <div class="about-me-box flex">
         <AboutMeBox />
@@ -101,6 +100,7 @@
     flex: 1;
     margin-left: 3vh;
     margin-right: 1.5vh;
+    z-index: 1;
   }
   .about-me-box {
     flex: 1;

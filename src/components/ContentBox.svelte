@@ -15,6 +15,15 @@
     svxContent = (await import(contentPath + wheelContent[value].slug + ".svx")).default;
   });
   onDestroy(unsubSelection);
+
+  const dateHandler = (date: string) => {
+    const d = parseISO(date);
+    if (!isNaN(d.getDate())) {
+      return format(d, "LLLL d, Y");
+    } else {
+      return "N/A";
+    }
+  }
 </script>
 
 <div class="container flex">
@@ -30,7 +39,7 @@
             width={20}
             style="vertical-align: bottom"
           />
-          {format(parseISO(wheelContent[$selection].date), "LLLL d, Y")}
+          {dateHandler(wheelContent[$selection].date)}
         </span>
       </div>
       <svelte:component this={svxContent} />
