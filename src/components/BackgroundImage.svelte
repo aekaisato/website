@@ -43,7 +43,7 @@
     bottom: 0;
   }
   .img-blur {
-    filter: blur(25px) brightness(0.7);
+    filter: blur(20px) brightness(0.7);
     transform: scale(1.1);
     overflow: hidden;
   }

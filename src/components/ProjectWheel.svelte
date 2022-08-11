@@ -26,22 +26,35 @@
     const otherSize = 1.5;
     return selectedSize - ((selectedSize - otherSize) * Math.min(1, Math.abs(index - $selectionTweened)));
   }
+
+  // uses css scale property as to prevent lines from shifting as size changes
+  const calculateFontScale = (index: number, dummy: any = null) => {
+    dummy = dummy;
+    const otherScale = 0.75;
+    return 1 - ((1 - otherScale) * Math.min(1, Math.abs(index - $selectionTweened)));
+  }
+
+  let containerWidth: number;
+
+  const getShortName = (wheelItem: {name: string, "short-name"?: string}) => {
+    return wheelItem["short-name"] ? wheelItem["short-name"] : wheelItem.name;
+  }
 </script>
 
-<div class="container flex">
+<div class="container flex" bind:clientWidth={containerWidth}>
   <div class="absolute giant-circle">
   </div>
   <div class="flex title-list">
     {#each wheelContent as wc, i}
       <div 
-        class="absolute"
-        style={`left: ${calculatePositionX(i, $selectionTweened)}vh; top: ${calculatePositionY(i, $selectionTweened)}vh; transform: translateY(-50%)`}
+        class="absolute title-box"
+        style={`left: ${calculatePositionX(i, $selectionTweened)}vh; top: ${calculatePositionY(i, $selectionTweened)}vh; transform: translateY(-50%); max-width: calc(${containerWidth}px - 8vh)`}
         on:click={() => selectionTweened.set(i)}
       >
         <h2
           class="title-text unselect"
-          style={`opacity: ${calculateOpacity(i, $selectionTweened)}; font-size: ${calculateFontSize(i, $selectionTweened)}em;`}
-        >{wc.name}</h2>
+          style={`opacity: ${calculateOpacity(i, $selectionTweened)}; transform: scale(${calculateFontScale(i, $selectionTweened)})`}
+        >{getShortName(wc)}</h2>
       </div>
     {/each}
   </div>
@@ -75,6 +88,8 @@
   }
   .title-text {
     color: white;
+    font-size: 2em;
+    transform-origin: center left;
   }
   .unselect {
     user-select: none;
