@@ -40,7 +40,7 @@
     if (scrollAmt) {
       container.scrollTo({
         top: scrollAmt,
-        behavior: "smooth"
+        behavior: "auto"
       })
     }
   }
