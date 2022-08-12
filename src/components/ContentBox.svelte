@@ -8,6 +8,7 @@
   import { format, parseISO } from "date-fns";
   //@ts-ignore
   import fallbackContent from "src/content/wheel-content/fallback-content.svx";
+  import "lite-youtube-embed/src/lite-yt-embed.css"; // used in svx content files
 
   let svxContent: SvelteComponent;
   let scrollMemory: {[key: string]: number} = {};
@@ -26,8 +27,11 @@
   });
   onDestroy(unsubSelection);
 
+  let ignoreScrollEvent = false;
   const handleScroll = () => {
-    scrollMemory[wheelContent[$selection].slug] = Math.min(container.scrollTop, container.scrollHeight - containerHeight);
+    if (!ignoreScrollEvent) {
+      scrollMemory[wheelContent[$selection].slug] = Math.min(container.scrollTop, container.scrollHeight - containerHeight);
+    }
   }
 
   const getScrollHelperHeight = () => {
@@ -35,14 +39,25 @@
     return isNaN(n) ? 0 : n;
   }
 
+  // adapted from https://stackoverflow.com/questions/68047290/how-to-detect-scrollto-has-finished
+  const scrollTo = (top: number, element: HTMLElement) => {
+    element.scrollTo({top: top, behavior: "smooth"});
+    return new Promise<void>(resolve => {
+      const scrollHandler = () => {
+        if (element.scrollTop == top) {
+          element.removeEventListener("scroll", scrollHandler);
+          ignoreScrollEvent = false;
+          resolve();
+        }
+      }
+      ignoreScrollEvent = true;
+      element.addEventListener("scroll", scrollHandler);
+    })
+  }
+
   const onIntro = () => {
     const scrollAmt = scrollMemory[wheelContent[$selection].slug];
-    if (scrollAmt) {
-      container.scrollTo({
-        top: scrollAmt,
-        behavior: "auto"
-      })
-    }
+    scrollTo(scrollAmt ? scrollAmt : 0, container);
   }
 
   const dateHandler = (date: string) => {
@@ -110,7 +125,9 @@
           </span>
         </span>
       </div>
-      <svelte:component this={svxContent}/>
+      <div class="flex svx-box">
+        <svelte:component this={svxContent}/>
+      </div>
     </div>
   </div>
   {/key}
@@ -144,8 +161,18 @@
     align-items: center;
     padding-bottom: 0.5em;
   }
+  .svx-box {
+    flex-direction: column;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
   h1 {
     margin-top: 0;
     margin-bottom: 0.5em;
+  }
+  :global(lite-youtube) {
+    border-radius: 6px;
+    width: 55%;
+    align-self: center;
   }
 </style>

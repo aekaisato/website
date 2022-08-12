@@ -8,6 +8,7 @@ specifiers:
   date-fns: ^2.29.1
   eslint: ^8.16.0
   eslint-plugin-svelte3: ^4.0.0
+  lite-youtube-embed: ^0.2.0
   mdsvex: ^0.10.6
   svelte: ^3.44.0
   svelte-check: ^2.7.1
@@ -24,6 +25,7 @@ devDependencies:
   date-fns: 2.29.1
   eslint: 8.21.0
   eslint-plugin-svelte3: 4.0.0_a7wk4ghvg4hia4trwaglu7p6cq
+  lite-youtube-embed: 0.2.0
   mdsvex: 0.10.6_svelte@3.49.0
   svelte: 3.49.0
   svelte-check: 2.8.0_svelte@3.49.0
@@ -1274,6 +1276,10 @@ packages:
     dependencies:
       prelude-ls: 1.2.1
       type-check: 0.4.0
+    dev: true
+
+  /lite-youtube-embed/0.2.0:
+    resolution: {integrity: sha512-XXXAk5sbvtjjwbie3XG+6HppgTm1HTGL/Uk9z9NkJH53o7puZLur434heHzAjkS60hZB3vT4ls25zl5rMiX4EA==}
     dev: true
 
   /locate-path/6.0.0:
