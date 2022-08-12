@@ -37,13 +37,27 @@
       <h1>{wheelContent[$selection].name}</h1>
       <div class="flex sub-box">
         <span style="filter: invert(0.35); display: inline;">
-          <TablerIcon
-            icon="clock"
-            alt="Date created"
-            width={20}
-            style="vertical-align: bottom"
-          />
-          {dateHandler(wheelContent[$selection].date)}
+          <span>
+            <TablerIcon
+              icon="clock"
+              alt="Date created"
+              width={20}
+              style="vertical-align: bottom"
+            />
+            {dateHandler(wheelContent[$selection].date)}
+          </span>
+          <span style="margin-left: 0.2em; margin-right: 0.2em;">
+            {"⸱"}
+          </span>
+          <span>
+            <TablerIcon
+              icon="tag"
+              alt="Tags"
+              width={20}
+              style="vertical-align: bottom"
+            />
+            {wheelContent[$selection].tags.join(", ").replaceAll("-", " ").toLowerCase()}
+          </span>
         </span>
       </div>
       <svelte:component this={svxContent} />
