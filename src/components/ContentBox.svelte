@@ -9,6 +9,11 @@
   import fallbackContent from "src/content/wheel-content/fallback-content.svx";
 
   let svxContent: SvelteComponent;
+  let scrollMemory: {[key: string]: number} = {};
+
+  const dispatch = createEventDispatcher();
+  let container: HTMLDivElement;
+  let containerHeight: number;
 
   // woah is this janky dynamic imports?! heck yeah!
   const unsubSelection = selection.subscribe(async (value) => {
@@ -20,6 +25,19 @@
   });
   onDestroy(unsubSelection);
 
+  const handleScroll = (event: UIEvent) => {
+    scrollMemory[wheelContent[$selection].slug] = container.scrollTop;
+  }
+
+  const onIntro = () => {
+    if (scrollMemory[wheelContent[$selection].slug]) {
+      container.scrollTo({
+        top: scrollMemory[wheelContent[$selection].slug],
+        behavior: "smooth"
+      })
+    }
+  }
+
   const dateHandler = (date: string) => {
     const d = parseISO(date);
     if (!isNaN(d.getDate())) {
@@ -28,10 +46,6 @@
       return "N/A";
     }
   }
-
-  const dispatch = createEventDispatcher();
-  let container: HTMLDivElement;
-  let containerHeight: number;
 
   const handleWheel = (event: WheelEvent) => {
     let toDispatch: { deltaY: number }
@@ -53,11 +67,12 @@
 <div
   class="container flex"
   on:wheel={handleWheel}
+  on:scroll={handleScroll}
   bind:this={container}
   bind:clientHeight={containerHeight}
 >
   {#key $selection}
-  <div class="flex content-box" transition:fade>
+  <div class="flex content-box" transition:fade on:introend={onIntro}>
     <div>
       <h1>{wheelContent[$selection].name}</h1>
       <div class="flex sub-box">
