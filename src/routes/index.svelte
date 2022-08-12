@@ -3,18 +3,32 @@
   import AboutMeBox from "src/components/AboutMeBox.svelte";
   import { selection, selectionTweened } from "src/functions/wheel-selection";
   // import wheelContent from "src/content/wheel.json";
-  import wheelContent from "src/functions/filter";
+  import wheelContent, { slugToIndex } from "src/functions/filter";
   import BackgroundImage from "src/components/BackgroundImage.svelte";
   import ContentBox from "src/components/ContentBox.svelte";
+  import { page } from "$app/stores";
+  import { onMount } from "svelte";
+  import { goto } from "$app/navigation";
 
+  const newHashFromIndex = (index: number) => {
+    goto(`#${wheelContent[index].slug}`);
+  }
   const updatePlus = () => {
     // selectionTweened.update(n => (n + 1) % wheelContent.length); // wraparound
-    selectionTweened.update(n => Math.min((n + 1), wheelContent.length - 1)); // deadend
+    selectionTweened.update((n) => {
+      const i = Math.min((n + 1), wheelContent.length - 1);
+      newHashFromIndex(i);
+      return i;
+    });
   }
 
   const updateMinus = () => {
     // selectionTweened.update(n => n <= 0 ? wheelContent.length + (n - 1) : (n - 1)); // wraparound
-    selectionTweened.update(n => Math.max((n - 1), 0)); // deadend
+    selectionTweened.update((n) => {
+      const i = Math.max((n - 1), 0);
+      newHashFromIndex(i);
+      return i;
+    });
   }
 
   const handleKeypress = (e: KeyboardEvent) => {
@@ -34,6 +48,20 @@
       updateMinus();
     }
   }
+
+  const changeHash = (hash: string) => {
+    const slug = hash.substring(hash.lastIndexOf("#") + 1);
+    const index = slugToIndex[slug];
+    if (index) {
+      selectionTweened.set(index);
+    }
+  }
+
+  const handleHashChange = (event: HashChangeEvent) => {
+    changeHash((new URL(event.newURL)).hash);
+  }
+
+  onMount(() => { changeHash($page.url.hash) })
 </script>
 
 <svelte:head>
@@ -117,4 +145,4 @@
   }
 </style>
 
-<svelte:window on:keydown={handleKeypress} />
+<svelte:window on:keydown={handleKeypress} on:hashchange={handleHashChange} />
