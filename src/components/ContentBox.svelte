@@ -1,11 +1,12 @@
 <script lang="ts">
   // import wheelContent from "src/content/wheel.json";
   import wheelContent from "src/functions/filter";
-  import { selection, selectionTweened } from "src/functions/wheel-selection";
+  import { selection } from "src/functions/wheel-selection";
   import { fade } from 'svelte/transition';
   import { onDestroy, SvelteComponent, createEventDispatcher } from "svelte";
   import TablerIcon from "./TablerIcon.svelte";
   import { format, parseISO } from "date-fns";
+  //@ts-ignore
   import fallbackContent from "src/content/wheel-content/fallback-content.svx";
 
   let svxContent: SvelteComponent;
@@ -25,14 +26,20 @@
   });
   onDestroy(unsubSelection);
 
-  const handleScroll = (event: UIEvent) => {
-    scrollMemory[wheelContent[$selection].slug] = container.scrollTop;
+  const handleScroll = () => {
+    scrollMemory[wheelContent[$selection].slug] = Math.min(container.scrollTop, container.scrollHeight - containerHeight);
+  }
+
+  const getScrollHelperHeight = () => {
+    const n = scrollMemory[wheelContent[$selection].slug] + containerHeight;
+    return isNaN(n) ? 0 : n;
   }
 
   const onIntro = () => {
-    if (scrollMemory[wheelContent[$selection].slug]) {
+    const scrollAmt = scrollMemory[wheelContent[$selection].slug];
+    if (scrollAmt) {
       container.scrollTo({
-        top: scrollMemory[wheelContent[$selection].slug],
+        top: scrollAmt,
         behavior: "smooth"
       })
     }
@@ -72,8 +79,11 @@
   bind:clientHeight={containerHeight}
 >
   {#key $selection}
-  <div class="flex content-box" transition:fade on:introend={onIntro}>
-    <div>
+  <div class="flex content-box" transition:fade on:introstart={onIntro}>
+    <div
+      class="scroll-memory-helper"
+      style={`min-height: calc(${getScrollHelperHeight()}px - 3vh);`}
+    >
       <h1>{wheelContent[$selection].name}</h1>
       <div class="flex sub-box">
         <span style="filter: invert(0.35); display: inline;">
@@ -100,7 +110,7 @@
           </span>
         </span>
       </div>
-      <svelte:component this={svxContent} />
+      <svelte:component this={svxContent}/>
     </div>
   </div>
   {/key}
