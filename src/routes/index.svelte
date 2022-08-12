@@ -41,10 +41,16 @@
 
   // eventually may want more sophisticated scroll handling,
   // but this works fine for now, i guess.
-  const handleScroll = (e: WheelEvent) => {
-    if (e.deltaY > 0) {
+  const handleScroll = (e: WheelEvent | { detail: { deltaY: number } }) => {
+    let deltaY = 0;
+    if (typeof e.detail == "object") { // hopefully this is stable lol
+      deltaY = e.detail.deltaY;
+    } else {
+      deltaY = (<WheelEvent>e).deltaY;
+    }
+    if (deltaY > 0) {
       updatePlus();
-    } else if (e.deltaY < 0) {
+    } else if (deltaY < 0) {
       updateMinus();
     }
   }
@@ -78,7 +84,7 @@
   </div>
   <div class="index-content flex">
     <div class="flex index-content-top">
-      <ContentBox />
+      <ContentBox on:wheelNoScroll={handleScroll}/>
     </div>
     <div class="flex index-content-bottom">
       <div class="whatever-box flex" on:wheel|preventDefault={handleScroll}>

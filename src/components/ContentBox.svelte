@@ -3,7 +3,7 @@
   import wheelContent from "src/functions/filter";
   import { selection, selectionTweened } from "src/functions/wheel-selection";
   import { fade } from 'svelte/transition';
-  import { onDestroy, SvelteComponent } from "svelte";
+  import { onDestroy, SvelteComponent, createEventDispatcher } from "svelte";
   import TablerIcon from "./TablerIcon.svelte";
   import { format, parseISO } from "date-fns";
   import fallbackContent from "src/content/wheel-content/fallback-content.svx";
@@ -28,9 +28,34 @@
       return "N/A";
     }
   }
+
+  const dispatch = createEventDispatcher();
+  let container: HTMLDivElement;
+  let containerHeight: number;
+
+  const handleWheel = (event: WheelEvent) => {
+    let toDispatch: { deltaY: number }
+    if (containerHeight !== container.scrollHeight &&
+      ((container.scrollTop > 0 &&
+        container.scrollTop + containerHeight < container.scrollHeight) ||
+        ((container.scrollTop == 0 && event.deltaY > 0) ||
+          (container.scrollTop + containerHeight >= container.scrollHeight
+            && event.deltaY < 0)))
+    ) {
+      toDispatch = { deltaY: 0 };
+    } else {
+      toDispatch = event;
+    }
+    dispatch("wheelNoScroll", toDispatch);
+  }
 </script>
 
-<div class="container flex">
+<div
+  class="container flex"
+  on:wheel={handleWheel}
+  bind:this={container}
+  bind:clientHeight={containerHeight}
+>
   {#key $selection}
   <div class="flex content-box" transition:fade>
     <div>
