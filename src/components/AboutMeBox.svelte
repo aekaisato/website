@@ -53,7 +53,7 @@
     flex-direction: row;
     justify-content: center;
     align-self: stretch;
-    border-radius: 8px;
+    border-radius: 6px;
     z-index: 1;
   }
   .content-box {

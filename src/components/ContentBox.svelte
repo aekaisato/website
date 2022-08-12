@@ -74,7 +74,7 @@
     justify-content: center;
     align-self: stretch;
     background-color: #ffffff70;
-    border-radius: 8px;
+    border-radius: 6px;
     z-index: 1;
     overflow-y: scroll;
   }
@@ -87,7 +87,7 @@
     flex-direction: column;
     flex: 1;
     align-self: stretch;
-    margin: 4vh;
+    margin: 3vh;
   }
   .sub-box {
     flex-direction: row;
