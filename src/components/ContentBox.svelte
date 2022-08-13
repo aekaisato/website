@@ -30,7 +30,8 @@
   let ignoreScrollEvent = false;
   const handleScroll = () => {
     if (!ignoreScrollEvent) {
-      scrollMemory[wheelContent[$selection].slug] = Math.min(container.scrollTop, container.scrollHeight - containerHeight);
+      console.log("ha")
+      scrollMemory[wheelContent[$selection].slug] = container.scrollTop;
     }
   }
 
@@ -170,7 +171,7 @@
     margin-top: 0;
     margin-bottom: 0.5em;
   }
-  :global(lite-youtube) {
+  :global(lite-youtube, .content-img) {
     border-radius: 6px;
     width: 55%;
     align-self: center;
