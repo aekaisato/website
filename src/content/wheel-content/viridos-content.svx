@@ -23,3 +23,5 @@ There were so many other fun challenges with coding ViriDOS: creating cloud sync
 We also advertised this game surprisingly heavily. Brandon and I created three trailers and two instagram teasers, of which I edited the third trailer and two teasers. The trailer I edited is available to view at the top of this page.
 
 In the end, I'm really proud of ViriDOS. It was a project created over the span of months, mostly by two people. The codebase is janky as heck, the "acting" is definitely high school project level, and overall it's not the most polished game or webapp. But at the end of the day, it was the first *real* programming project I tackled, and I had a blast creating it.
+
+[Play ViriDOS](https://viridos.toadtoad.xyz) | [Source code](https://github.com/aekaisato/OxfordARG)
