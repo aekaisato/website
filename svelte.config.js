@@ -1,6 +1,7 @@
 import adapter from '@sveltejs/adapter-auto';
 import preprocess from 'svelte-preprocess';
 import { mdsvex } from "mdsvex";
+import rehypeExternalLinks from 'rehype-external-links';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
@@ -8,7 +9,13 @@ const config = {
 
   // Consult https://github.com/sveltejs/svelte-preprocess
   // for more information about preprocessors
-  preprocess: [mdsvex(), preprocess()],
+  preprocess: [mdsvex({
+    rehypePlugins: [[rehypeExternalLinks,
+      {
+        rel: ["noopener", "noreferrer"],
+        target: "_blank"
+      }]]
+  }), preprocess()],
 
   kit: {
     adapter: adapter(),
