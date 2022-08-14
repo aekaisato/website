@@ -1,0 +1,8 @@
+<script>
+  import "lite-youtube-embed";
+  import { fade } from "svelte/transition";
+</script>
+
+<p /> <!-- for spacing -->
+<lite-youtube videoid="-O98ymHlT3A" playlabel="Play: From Stone to Steel" in:fade />
+

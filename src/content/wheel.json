@@ -6,6 +6,12 @@
     "tags": ["programming", "game-dev", "filmmaking", "video-editing", "music", "ui-design"]
   },
   {
+    "slug": "stone-to-steel",
+    "name": "From Stone to Steel",
+    "date": "2022-06-15",
+    "tags": ["filmmaking", "video-editing"]
+  },
+  {
     "slug": "undoing",
     "name": "Undoing",
     "date": "2020-10-30",
@@ -15,12 +21,6 @@
     "slug": "ctrl",
     "name": "CTRL",
     "date": "2020-12-09",
-    "tags": ["filmmaking", "video-editing"]
-  },
-  {
-    "slug": "stone-to-steel",
-    "name": "From Stone to Steel",
-    "date": "2022-06-15",
     "tags": ["filmmaking", "video-editing"]
   },
   {
