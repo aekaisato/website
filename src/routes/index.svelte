@@ -13,19 +13,19 @@
   const newHashFromIndex = (index: number) => {
     goto(`#${wheelContent[index].slug}`);
   }
-  const updatePlus = () => {
+  const updatePlus = (x: number = 1) => {
     // selectionTweened.update(n => (n + 1) % wheelContent.length); // wraparound
     selectionTweened.update((n) => {
-      const i = Math.min((n + 1), wheelContent.length - 1);
+      const i = Math.min((n + x), wheelContent.length - 1);
       newHashFromIndex(i);
       return i;
     });
   }
 
-  const updateMinus = () => {
+  const updateMinus = (x: number = 1) => {
     // selectionTweened.update(n => n <= 0 ? wheelContent.length + (n - 1) : (n - 1)); // wraparound
     selectionTweened.update((n) => {
-      const i = Math.max((n - 1), 0);
+      const i = Math.max((n - x), 0);
       newHashFromIndex(i);
       return i;
     });
@@ -39,35 +39,60 @@
     }
   }
 
-  // eventually may want more sophisticated scroll handling,
-  // but this works fine for now, i guess.
-  const handleScroll = (e: WheelEvent | { detail: { deltaY: number } }) => {
-    let deltaY = 0;
-    if (typeof e.detail == "object") { // hopefully this is stable lol
-      deltaY = e.detail.deltaY;
-    } else {
-      deltaY = (<WheelEvent>e).deltaY;
+  const handleScroll = (e: WheelEvent | { detail: { deltaY: number, deltaMode: number } }) => {
+  let deltaY = 0;
+  let deltaMode = 0;
+  if (typeof e.detail == "object") { // hopefully this is stable lol
+    deltaY = e.detail.deltaY;
+    deltaMode = e.detail.deltaMode;
+  } else {
+    deltaY = (<WheelEvent>e).deltaY;
+      deltaMode = (<WheelEvent>e).deltaMode;
     }
-    if (deltaY > 0) {
-      updatePlus();
-    } else if (deltaY < 0) {
-      updateMinus();
-    }
+    addiviteDebounce(deltaY);
   }
 
-  const changeHash = (hash: string) => {
-    const slug = hash.substring(hash.lastIndexOf("#") + 1);
-    const index = slugToIndex[slug];
-    if (index) {
-      selectionTweened.set(index);
+  let timer: any;
+    let dy = 0;
+    const addiviteDebounce = (deltaY: number) => {
+      if (!timer) {
+        timer = setTimeout(() => {registerScroll(dy); timer = null; dy = 0}, 100);
+      }
+      // disgusting hack to compensate for differences in touchpad scrolling between firefox and chrome
+      deltaY = deltaY != 132 ? deltaY * 2 : deltaY;
+      dy += deltaY;
     }
-  }
 
-  const handleHashChange = (event: HashChangeEvent) => {
-    changeHash((new URL(event.newURL)).hash);
-  }
+    // eventually may want more sophisticated scroll handling,
+    // but this works fine for now, i guess.
+    const registerScroll = (deltaY: number) => {
+      const threshold = 132;
+      console.log(deltaY)
+      let fn;
+      if (deltaY >= threshold) {
+        fn = updatePlus;
+      } else if (deltaY <= -threshold) {
+        fn = updateMinus;
+      }
+      if (fn != undefined) {
+        const x = Math.floor(Math.sqrt(Math.abs(deltaY) / threshold));
+        fn(x);
+      }
+    }
 
-  onMount(() => { changeHash($page.url.hash) })
+    const changeHash = (hash: string) => {
+      const slug = hash.substring(hash.lastIndexOf("#") + 1);
+      const index = slugToIndex[slug];
+      if (index) {
+        selectionTweened.set(index);
+      }
+    }
+
+    const handleHashChange = (event: HashChangeEvent) => {
+      changeHash((new URL(event.newURL)).hash);
+    }
+
+    onMount(() => { changeHash($page.url.hash) })
 </script>
 
 <svelte:head>

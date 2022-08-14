@@ -30,7 +30,6 @@
   let ignoreScrollEvent = false;
   const handleScroll = () => {
     if (!ignoreScrollEvent) {
-      console.log("ha")
       scrollMemory[wheelContent[$selection].slug] = container.scrollTop;
     }
   }
