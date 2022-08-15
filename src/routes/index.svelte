@@ -61,7 +61,6 @@
       dySum = 0;
     }, 300);
     dySum += deltaY;
-    console.log(dySum)
     if (Math.abs(dySum) >= threshold) {
       registerScroll(dySum);
       dySum = dySum % threshold;
@@ -70,7 +69,6 @@
 
   const registerScroll = (deltaY: number) => {
     const threshold = 60;
-    console.log(deltaY)
     let fn;
     if (deltaY >= threshold) {
       fn = updatePlus;
