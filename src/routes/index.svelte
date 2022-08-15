@@ -40,59 +40,62 @@
   }
 
   const handleScroll = (e: WheelEvent | { detail: { deltaY: number, deltaMode: number } }) => {
-  let deltaY = 0;
-  let deltaMode = 0;
-  if (typeof e.detail == "object") { // hopefully this is stable lol
-    deltaY = e.detail.deltaY;
-    deltaMode = e.detail.deltaMode;
-  } else {
-    deltaY = (<WheelEvent>e).deltaY;
+    let deltaY = 0;
+    let deltaMode = 0;
+    if (typeof e.detail == "object") { // hopefully this is stable lol
+      deltaY = e.detail.deltaY;
+      deltaMode = e.detail.deltaMode;
+    } else {
+      deltaY = (<WheelEvent>e).deltaY;
       deltaMode = (<WheelEvent>e).deltaMode;
     }
-    addiviteDebounce(deltaY);
+    additiveUntimedDebounce(deltaY);
   }
 
-  let timer: any;
-    let dy = 0;
-    const addiviteDebounce = (deltaY: number) => {
-      if (!timer) {
-        timer = setTimeout(() => {registerScroll(dy); timer = null; dy = 0}, 100);
-      }
-      // disgusting hack to compensate for differences in touchpad scrolling between firefox and chrome
-      deltaY = deltaY != 132 ? deltaY * 2 : deltaY;
-      dy += deltaY;
+  let dySum = 0;
+  let sumTimer: any;
+  const additiveUntimedDebounce = (deltaY: number) => {
+    const threshold = 60;
+    clearTimeout(sumTimer);
+    setTimeout(() => {
+      dySum = 0;
+    }, 300);
+    dySum += deltaY;
+    console.log(dySum)
+    if (Math.abs(dySum) >= threshold) {
+      registerScroll(dySum);
+      dySum = dySum % threshold;
     }
+  }
 
-    // eventually may want more sophisticated scroll handling,
-    // but this works fine for now, i guess.
-    const registerScroll = (deltaY: number) => {
-      const threshold = 132;
-      console.log(deltaY)
-      let fn;
-      if (deltaY >= threshold) {
-        fn = updatePlus;
-      } else if (deltaY <= -threshold) {
-        fn = updateMinus;
-      }
-      if (fn != undefined) {
-        const x = Math.floor(Math.sqrt(Math.abs(deltaY) / threshold));
-        fn(x);
-      }
+  const registerScroll = (deltaY: number) => {
+    const threshold = 60;
+    console.log(deltaY)
+    let fn;
+    if (deltaY >= threshold) {
+      fn = updatePlus;
+    } else if (deltaY <= -threshold) {
+      fn = updateMinus;
     }
-
-    const changeHash = (hash: string) => {
-      const slug = hash.substring(hash.lastIndexOf("#") + 1);
-      const index = slugToIndex[slug];
-      if (index) {
-        selectionTweened.set(index);
-      }
+    if (fn != undefined) {
+      const x = Math.floor(Math.sqrt(Math.abs(deltaY) / threshold));
+      fn(x);
     }
+  }
 
-    const handleHashChange = (event: HashChangeEvent) => {
-      changeHash((new URL(event.newURL)).hash);
+  const changeHash = (hash: string) => {
+    const slug = hash.substring(hash.lastIndexOf("#") + 1);
+    const index = slugToIndex[slug];
+    if (index) {
+      selectionTweened.set(index);
     }
+  }
 
-    onMount(() => { changeHash($page.url.hash) })
+  const handleHashChange = (event: HashChangeEvent) => {
+    changeHash((new URL(event.newURL)).hash);
+  }
+
+  onMount(() => { changeHash($page.url.hash) })
 </script>
 
 <svelte:head>
