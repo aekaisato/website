@@ -1,7 +1,7 @@
 <script lang="ts">
   // import wheelContent from "src/content/wheel.json";
   import wheelContent from "src/functions/filter";
-  import { selection } from "src/functions/wheel-selection";
+  import { selection, previousSelection } from "src/functions/wheel-selection";
   import { fade } from 'svelte/transition';
   import { onDestroy, SvelteComponent, createEventDispatcher } from "svelte";
   import TablerIcon from "./TablerIcon.svelte";
@@ -12,6 +12,7 @@
 
   let svxContent: SvelteComponent;
   let scrollMemory: {[key: string]: number} = {};
+  let ignoreScrollEvent = false;
 
   const dispatch = createEventDispatcher();
   let container: HTMLDivElement;
@@ -27,35 +28,36 @@
   });
   onDestroy(unsubSelection);
 
-  let ignoreScrollEvent = false;
-  const handleScroll = () => {
-    if (!ignoreScrollEvent) {
-      scrollMemory[wheelContent[$selection].slug] = container.scrollTop;
-    }
-  }
-
   const getScrollHelperHeight = () => {
     const n = scrollMemory[wheelContent[$selection].slug] + containerHeight;
-    return isNaN(n) ? 0 : n;
+    return isNaN(n) ? 0 : n - 1; // the minus one is to fix a dumb scrollbar thing
   }
 
   // adapted from https://stackoverflow.com/questions/68047290/how-to-detect-scrollto-has-finished
   const scrollTo = (top: number, element: HTMLElement) => {
     element.scrollTo({top: top, behavior: "smooth"});
     return new Promise<void>(resolve => {
+      const resolvePromise = () => {
+        element.removeEventListener("scroll", scrollHandler);
+        ignoreScrollEvent = false;
+        resolve();
+      }
       const scrollHandler = () => {
         if (element.scrollTop == top) {
-          element.removeEventListener("scroll", scrollHandler);
-          ignoreScrollEvent = false;
-          resolve();
+          ignoreScrollEvent = true;
+          resolvePromise();
         }
       }
       ignoreScrollEvent = true;
       element.addEventListener("scroll", scrollHandler);
+      setTimeout(resolvePromise, 400); // resolve promise if length of transition has passed
     })
   }
 
-  const onIntro = () => {
+  const saveAndRecallScroll = () => {
+    if ($previousSelection != null && !ignoreScrollEvent) {
+      scrollMemory[wheelContent[$previousSelection].slug] = container.scrollTop;
+    }
     const scrollAmt = scrollMemory[wheelContent[$selection].slug];
     scrollTo(scrollAmt ? scrollAmt : 0, container);
   }
@@ -89,12 +91,11 @@
 <div
   class="container flex"
   on:wheel={handleWheel}
-  on:scroll={handleScroll}
   bind:this={container}
   bind:clientHeight={containerHeight}
 >
   {#key $selection}
-  <div class="flex content-box" transition:fade on:introstart={onIntro}>
+  <div class="flex content-box" transition:fade on:introstart={saveAndRecallScroll}>
     <div
       class="scroll-memory-helper"
       style={`min-height: calc(${getScrollHelperHeight()}px - 3vh);`}

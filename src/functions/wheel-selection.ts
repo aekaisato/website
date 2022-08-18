@@ -1,6 +1,6 @@
 import { tweened } from "svelte/motion";
 import { quadInOut } from "svelte/easing";
-import { derived } from "svelte/store";
+import { derived, writable } from "svelte/store";
 import { slugToIndex } from "./filter";
 import type { LoadEvent } from "@sveltejs/kit";
 
@@ -21,3 +21,9 @@ export const selectionTweened = tweened(initialSelection, {
 export const selection = derived(selectionTweened,
   $selectionTweened => Math.round($selectionTweened));
 
+const selectionHistory: number[] = [];
+export const previousSelection = derived(selection, 
+  $selection => {
+    selectionHistory.push($selection);
+    return selectionHistory.length >= 2 ? selectionHistory[selectionHistory.length - 2] : null;
+  });
