@@ -10,9 +10,12 @@
   import { onMount } from "svelte";
   import { goto } from "$app/navigation";
 
+  const SCROLL_THRESHOLD = 50;
+
   const newHashFromIndex = (index: number) => {
     goto(`#${wheelContent[index].slug}`);
   }
+
   const updatePlus = (x: number = 1) => {
     // selectionTweened.update(n => (n + 1) % wheelContent.length); // wraparound
     selectionTweened.update((n) => {
@@ -55,7 +58,7 @@
   let dySum = 0;
   let sumTimer: any;
   const additiveUntimedDebounce = (deltaY: number) => {
-    const threshold = 60;
+    const threshold = SCROLL_THRESHOLD;
     clearTimeout(sumTimer);
     setTimeout(() => {
       dySum = 0;
@@ -68,7 +71,7 @@
   }
 
   const registerScroll = (deltaY: number) => {
-    const threshold = 60;
+    const threshold = SCROLL_THRESHOLD;
     let fn;
     if (deltaY >= threshold) {
       fn = updatePlus;
