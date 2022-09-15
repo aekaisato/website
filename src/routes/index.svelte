@@ -104,6 +104,10 @@
   <meta name="description" content="Portfolio page for Aiden Sato" />
 </svelte:head>
 
+<noscript>
+  <p>This page uses (a lot of) JavaScript. Either enable JavaScript and refresh the page, or go to the simplified version of this page <a href="/simple">here</a>.</p>
+</noscript>
+
 <div class="container flex">
   <div class="bg-img-box flex" on:wheel|preventDefault={handleScroll}>
     <BackgroundImage />
