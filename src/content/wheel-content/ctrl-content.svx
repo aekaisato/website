@@ -1,0 +1,7 @@
+<script>
+  import "lite-youtube-embed";
+  import { fade } from "svelte/transition";
+</script>
+
+<p /> <!-- for spacing -->
+<lite-youtube videoid="ZoreL5kBRwU" playlabel="Play: CTRL" in:fade />

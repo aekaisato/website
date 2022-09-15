@@ -58,7 +58,7 @@
   }
   .content-box {
     flex: 7;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
   .link-box {
     flex: 1;
@@ -73,5 +73,6 @@
     margin: 5%;
     color: white;
     font-size: smaller;
+    line-height: 150%;
   }
 </style>

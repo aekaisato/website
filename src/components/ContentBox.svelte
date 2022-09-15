@@ -144,7 +144,7 @@
     background-color: #ffffff70;
     border-radius: 6px;
     z-index: 1;
-    overflow-y: scroll;
+    overflow-y: auto;
   }
   .content-box {
     position: absolute;
@@ -171,9 +171,12 @@
     margin-top: 0;
     margin-bottom: 0.5em;
   }
-  :global(lite-youtube, .content-img) {
+  :global(.svx-box * lite-youtube, .svx-box > lite-youtube, .svx-box * img, .svx-box > audio, .svx-box * audio) {
     border-radius: 6px;
     width: 55%;
-    align-self: center;
+    max-height: 35vh;
+    object-fit: cover;
+    margin: 0 auto;
+    display: block;
   }
 </style>

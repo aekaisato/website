@@ -6,6 +6,24 @@
     "tags": ["programming", "game-dev", "filmmaking", "video-editing", "music", "ui-design"]
   },
   {
+    "slug": "jank-jumper",
+    "name": "Jank Jumper: Unlimited",
+    "date": "2021-11-05",
+    "tags": ["programming", "game-dev", "music"]
+  },
+  {
+    "slug": "tower-heist",
+    "name": "Tower Heist (Prototype)",
+    "date": "",
+    "tags": ["programming", "game-dev"]
+  },
+  {
+    "slug": "creed",
+    "name": "Creed (Prototype)",
+    "date": "",
+    "tags": ["programming", "game-dev", "ui-design"]
+  },
+  {
     "slug": "stone-to-steel",
     "name": "From Stone to Steel",
     "date": "2022-06-15",
@@ -16,6 +34,26 @@
     "name": "Undoing",
     "date": "2020-10-30",
     "tags": ["filmmaking", "video-editing"]
+  },
+  {
+    "slug": "promo-2",
+    "name": "Northeastern Khoury Promo",
+    "date": "2022-04-24",
+    "tags": ["filmmaking", "video-editing"]
+  },
+  {
+    "slug": "discrete-structures",
+    "name": "The Discrete Structures Christmas Special",
+    "short-name": "A Discrete Structures Christmas",
+    "date": "2021-12-01",
+    "tags": ["filmmaking", "video-editing", "music"]
+  },
+  {
+    "slug": "math-data-models",
+    "name": "Mathematics of Data Models Mini-Project: A Scene",
+    "short-name": "Math Mini-Project",
+    "date": "2021-03-05",
+    "tags": ["filmmaking", "video-editing", "music"]
   },
   {
     "slug": "ctrl",
@@ -42,6 +80,13 @@
     "name": "OA PTSA Winter Raffle Ad",
     "date": "2020-11-15",
     "tags": ["filmmaking", "video-editing"]
+  },
+  {
+    "slug": "gamename-trailer",
+    "name": "Galactic Adventures of Military Empires: New Advanced Missions Edition",
+    "short-name": "GAMENAME",
+    "date": "2021-03-05",
+    "tags": ["filmmaking", "video-editing", "music", "programming", "game-dev"]
   },
   {
     "slug": "time-inception",
@@ -78,7 +123,8 @@
     "name": "Summer Film Academy Recap Video",
     "short-name": "Summer Film Academy",
     "date": "2020-06-24",
-    "tags": ["filmmaking", "video-editing"]
+    "tags": ["filmmaking", "video-editing"],
+    "temp_hidden": true
   },
   {
     "slug": "patriotapp",
@@ -111,64 +157,22 @@
     "slug": "deltarune-medley",
     "name": "Deltarune Medley Video",
     "date": "2021-05-25",
-    "tags": ["video-editing", "music"]
+    "tags": ["video-editing", "music"],
+    "temp_hidden": true
   },
   {
     "slug": "we-rise-together",
     "name": "We Rise Together",
     "date": "2021-08-13",
-    "tags": ["filmmaking", "video-editing"]
-  },
-  {
-    "slug": "discrete-structures",
-    "name": "The Discrete Structures Christmas Special",
-    "short-name": "A Discrete Structures Christmas",
-    "date": "2021-12-01",
-    "tags": ["filmmaking", "video-editing", "music"]
-  },
-  {
-    "slug": "gamename-trailer",
-    "name": "Galactic Adventures of Military Empires: New Advanced Missions Edition",
-    "short-name": "GAMENAME",
-    "date": "2021-03-05",
-    "tags": ["filmmaking", "video-editing", "music", "programming", "game-dev"]
-  },
-  {
-    "slug": "promo-2",
-    "name": "Northeastern Khoury Promo",
-    "date": "2022-04-24",
-    "tags": ["filmmaking", "video-editing"]
-  },
-  {
-    "slug": "math-data-models",
-    "name": "Mathematics of Data Models Mini-Project: A Scene",
-    "short-name": "Math Mini-Project",
-    "date": "2021-03-05",
-    "tags": ["filmmaking", "video-editing", "music"]
-  },
-  {
-    "slug": "jank-jumper",
-    "name": "Jank Jumper Unlimited",
-    "date": "2021-11-05",
-    "tags": ["programming", "game-dev", "music"]
-  },
-  {
-    "slug": "tower-heist",
-    "name": "Tower Heist (Prototype)",
-    "date": "",
-    "tags": ["programming", "game-dev"]
-  },
-  {
-    "slug": "creed",
-    "name": "Creed (Prototype)",
-    "date": "",
-    "tags": ["programming", "game-dev", "ui-design"]
+    "tags": ["filmmaking", "video-editing"],
+    "temp_hidden": true
   },
   {
     "slug": "droptable",
     "name": "Droptable (Prototype)",
     "date": "",
-    "tags": ["programming", "ui-design"]
+    "tags": ["programming", "ui-design"],
+    "temp_hidden": true
   },
   {
     "slug": "misc",
