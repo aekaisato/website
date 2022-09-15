@@ -49,13 +49,6 @@
     "tags": ["filmmaking", "video-editing", "music"]
   },
   {
-    "slug": "math-data-models",
-    "name": "Mathematics of Data Models Mini-Project: A Scene",
-    "short-name": "Math Mini-Project",
-    "date": "2021-03-05",
-    "tags": ["filmmaking", "video-editing", "music"]
-  },
-  {
     "slug": "ctrl",
     "name": "CTRL",
     "date": "2020-12-09",
@@ -94,6 +87,13 @@
     "short-name": "\"Time\" Virtual Orchestra",
     "date": "2020-05-02",
     "tags": ["video-editing", "music"]
+  },
+  {
+    "slug": "math-data-models",
+    "name": "Mathematics of Data Models Mini-Project: A Scene",
+    "short-name": "Math Mini-Project",
+    "date": "2022-03-05",
+    "tags": ["filmmaking", "video-editing", "music"]
   },
   {
     "slug": "studying-over-quarantine",

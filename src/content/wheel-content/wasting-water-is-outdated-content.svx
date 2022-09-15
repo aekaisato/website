@@ -1,0 +1,15 @@
+<script>
+  import "lite-youtube-embed";
+  import { fade } from "svelte/transition";
+</script>
+
+<p /> <!-- for spacing -->
+<lite-youtube videoid="Sui0VBIAxW0" playlabel="Play: Wasting Water Is Outdated" in:fade />
+
+In my senior year of high school, I got to be a board member of our school's Solar Boat club, despite never being in the club prior, and despite having no experience with Solar Boat. Why? They needed someone to make a PSA. Wasting Water Is Oudated was the result.
+
+In total, I did some amounts of research, wrote the introduction and closing, revised the other parts of the script, storyboard the video, did the voiceover, and edited the entire thing. This video was my first time ever using Blender (for the "infinite water" clip, as well as the grass and cactus clips), and I'm fairly happy with how it turned out.
+
+The "50% wasted" clip took a huge toll on my computer when I edited it, as I didn't realize to cache the noise used to define the shape of the water, leading to massive amounts of RAM, VRAM, and GPU power being taken up by the clip. I think I learned my lesson, though.
+
+All in all, I still think this video is pretty solid, even if it's been quite a while since I made it. Sadly, due to COVID-19, the PSA portion of the competition was scrapped, for some reason, so it was never used.

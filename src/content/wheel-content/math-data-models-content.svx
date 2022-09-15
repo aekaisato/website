@@ -1,0 +1,11 @@
+<script>
+  import "lite-youtube-embed";
+  import { fade } from "svelte/transition";
+</script>
+
+<p /> <!-- for spacing -->
+<lite-youtube videoid="AunudlZ3JoU" playlabel="Play: Mathematics of Data Models Mini-Project: A Scene" in:fade />
+
+For this project, we were assigned to create some sort of scene, with objects we can somehow connect to concepts in the class. We were tasked to describe the scene and how it our class's concepts can be used to describe it. For this video, I create a very simple scene which I basically shoe-horned in concepts from class.
+
+The content of the video itself is pretty simple, but I'm happy with how the presentation of the video turned out, considering I have very little experience in Blender, which was used for any 3D aspects. Additionally, the music in the video was composed by me. Why? Because I thought it'd be fun. :D

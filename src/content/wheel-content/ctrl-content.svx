@@ -5,3 +5,9 @@
 
 <p /> <!-- for spacing -->
 <lite-youtube videoid="ZoreL5kBRwU" playlabel="Play: CTRL" in:fade />
+
+CTRL is a video made to describe the risks posed by ad tracking and personalization on the Internet. While I'm not happy with several aspects of the video in hindsight, I'm still decently proud of the editing and directing of this video.
+
+I'll start with what I'm not happy with. For one, my delivery on several lines is awful, and it honestly makes me cringe rewatching. Additionally, I'm talking *way* to close to the microphone, leading to weird clipping and very audio "mouth sounds". After the production of the video, I learned how I can mostly remove those sounds, and I wish I did that for this video. Additionally, I don't have the rights to most of the music in the video, which is something I aim to do now when I make videos. Finally, and perhaps most importantly, ***I made a huge mistake drawing the images with triangle or pyramid heads. It creates a really weird implication that I don't want and never wanted for my video.***
+
+However, I still think some sequences, like the "filter bubble" sequence, the "profile" sequence, as well as the closing animation, still look pretty good, and they're something I'm relatively happy with, still.
