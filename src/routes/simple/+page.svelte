@@ -4,6 +4,7 @@
   import fallbackContent from "src/content/wheel-content/fallback-content.svx";
   import aboutMeContent from "src/content/about-me.txt?raw";
   import socialLinks from "src/content/social-links.json";
+  import { tagHandler, dateHandler } from "src/functions/formatting"; 
 
   const getContent = async (slug: string) => {
     let svxContent;
@@ -38,6 +39,7 @@
   {#each wheelContent as wc, i}
     <div id={wc.slug}>
       <h2>{wc.name}</h2>
+      <sub>{dateHandler(wc.date) + " ⸱ " + tagHandler(wc.tags)}</sub>
       {#await getContent(wc.slug)}
         <div />
         {:then content}

@@ -5,7 +5,7 @@
   import { fade } from 'svelte/transition';
   import { onMount, onDestroy, SvelteComponent, createEventDispatcher } from "svelte";
   import TablerIcon from "./TablerIcon.svelte";
-  import { format, parseISO } from "date-fns";
+  import { tagHandler, dateHandler } from "src/functions/formatting"; 
   //@ts-ignore
   import fallbackContent from "src/content/wheel-content/fallback-content.svx";
   //@ts-ignore
@@ -67,15 +67,6 @@
     scrollTo(scrollAmt ? scrollAmt : 0, container);
   }
 
-  const dateHandler = (date: string) => {
-    const d = parseISO(date);
-    if (!isNaN(d.getDate())) {
-      return format(d, "LLLL d, Y");
-    } else {
-      return "N/A";
-    }
-  }
-
   const handleWheel = (event: WheelEvent) => {
     let toDispatch: { deltaY: number }
     if (containerHeight !== container.scrollHeight &&
@@ -127,7 +118,7 @@
               width={20}
               style="vertical-align: bottom"
             />
-            {wheelContent[$selection].tags.join(", ").replaceAll("-", " ").toLowerCase()}
+            {tagHandler(wheelContent[$selection].tags)}
           </span>
         </span>
       </div>
