@@ -9,6 +9,9 @@
     <p class="text-content">
       {aboutMeContent}
     </p>
+    <p class="text-content">
+      To view a simplified version of this page, click <a href="/simple">here</a>.
+    </p>
   </div>
   <div class="flex link-box">
     {#each socialLinks as sl}
@@ -42,6 +45,8 @@
   .content-box {
     flex: 7;
     overflow-y: auto;
+    flex-direction: column;
+    justify-content: space-between;
   }
   .link-box {
     flex: 1;

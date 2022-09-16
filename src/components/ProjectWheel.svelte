@@ -2,6 +2,7 @@
   // import wheelContent from "src/content/wheel.json";
   import wheelContent from "src/functions/filter";
   import { selection, selectionTweened } from "src/functions/wheel-selection";
+  import { goto } from "$app/navigation";
 
   export const maxOnScreen = 7; // this should be odd
 
@@ -50,7 +51,7 @@
       <div 
         class="absolute title-box"
         style={`left: ${calculatePositionX(i, $selectionTweened)}vh; top: ${calculatePositionY(i, $selectionTweened)}vh; transform: translateY(-50%); max-width: calc(${containerWidth}px - 8vh)`}
-        on:click={() => selectionTweened.set(i)}
+        on:click={() => {selectionTweened.set(i); goto(`#${wheelContent[i].slug}`); }}
       >
         <h2
           class="title-text unselect"

@@ -17,7 +17,7 @@
 </script>
 
 <div class="simple-content">
-  <p><i>This is a simplified version of my portfolio page. If you're seeing this, you're likely on a mobile device. If you're on a desktop and would like to view the full-fat page, click <a href="/">here</a>.</i></p>
+  <p><i>This is a simplified version of my portfolio page. If you're seeing this, you're likely on a mobile device. If you're on a desktop and would like to view the full-fat page, click <a href="/?bypass-redirect=true">here</a>.</i></p>
   <br />
   <p>{aboutMeContent}</p>
   <div style="display: flex; flex-direction: row; justify-content: space-evenly">

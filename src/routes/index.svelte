@@ -12,7 +12,11 @@
 
   const SCROLL_THRESHOLD = 50;
 
+  let viewportW: number;
+  let viewportH: number;
+
   const newHashFromIndex = (index: number) => {
+    // if this is changed also change it in ProjectWheel
     goto(`#${wheelContent[index].slug}`);
   }
 
@@ -96,7 +100,13 @@
     changeHash((new URL(event.newURL)).hash);
   }
 
-  onMount(() => { changeHash($page.url.hash) })
+  onMount(() => { 
+    changeHash($page.url.hash)
+    const bypassRedirect = $page.url.searchParams.get("bypass-redirect") === "true";
+    if (!bypassRedirect && viewportW < viewportH) {
+      location.href = "/simple";
+    }
+  })
 </script>
 
 <svelte:head>
@@ -108,7 +118,7 @@
   <p>This page uses (a lot of) JavaScript. Either enable JavaScript and refresh the page, or go to the simplified version of this page <a href="/simple">here</a>.</p>
 </noscript>
 
-<div class="container flex">
+<div class="container flex" bind:clientHeight={viewportH} bind:clientWidth={viewportW}>
   <div class="bg-img-box flex" on:wheel|preventDefault={handleScroll}>
     <BackgroundImage />
   </div>
