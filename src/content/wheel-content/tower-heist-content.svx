@@ -4,7 +4,7 @@ Tower Heist is a turn-based, social-deduction, strategy capture-the-flag board g
 
 The Tower Heist prototype is capable of online play, assuming the clients can connect to the correct port on the server. It additionally fully implements the rules of the game, including the hidden information and bluffing mechanics. However, as the prototype was my first project in Unity (built during the summer between senior year of high school and freshman year of college), the codebase is rather messy, and it is likely that in the future we will reimplement it, potentially in Godot.
 
-In addition to implementing the game and networking, we began designing aspects of the game's user interface. Some music was also composed for the game by Matthew and [Anthony Wang](https://www.youtube.com/channel/UCLaTKE383BgO1XxAci5GSKQ), where I took the MIDI files and set the synth sounds in FL Studio. Following are a few examples:
+In addition to implementing the game and networking, we began designing aspects of the game's user interface. Some music was also composed for the game by Matthew and [Anthony Wang](https://www.youtube.com/channel/UCLaTKE383BgO1XxAci5GSKQ), where I took the MIDI files and set the synth sounds in FL Studio, as well as did some light mixing. Following are a few examples:
 
 <p style="text-align: center">
   <audio controls src="/content-img/tower-heist/genesis-draft.mp3" />
