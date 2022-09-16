@@ -115,7 +115,7 @@
 </svelte:head>
 
 <noscript>
-  <p>This page uses (a lot of) JavaScript. Either enable JavaScript and refresh the page, or go to the simplified version of this page <a href="/simple">here</a>.</p>
+  <p>This page uses JavaScript. Please enable JavaScript and refresh the page. Additionally, you can go to the simplified version of this page <a href="/simple">here</a>, although it still uses JavaScript to render, something I'm currently looking for a way to rectify. Thanks.</p>
 </noscript>
 
 <div class="container flex" bind:clientHeight={viewportH} bind:clientWidth={viewportW}>
