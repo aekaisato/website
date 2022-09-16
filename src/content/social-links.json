@@ -1,0 +1,17 @@
+  [
+    {
+      "name": "GitHub",
+      "link": "https://github.com/aekaisato/",
+      "icon": "brand-github"
+    },
+    {
+      "name": "YouTube",
+      "link": "https://www.youtube.com/channel/UCXFcmOeXm7bcxBG3qPEiOkw",
+      "icon": "brand-youtube"
+    },
+    {
+      "name": "itch.io",
+      "link": "https://aekaisato.itch.io/",
+      "icon": "device-gamepad-2"
+    }
+  ]

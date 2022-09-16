@@ -1,24 +1,7 @@
 <script lang="ts">
   import aboutMeContent from "src/content/about-me.txt?raw";
   import TablerIcon from "src/components/TablerIcon.svelte";
-
-  const socialLinks = [
-    {
-      name: "GitHub",
-      link: "https://github.com/aekaisato/",
-      icon: "brand-github"
-    },
-    {
-      name: "YouTube",
-      link: "https://www.youtube.com/channel/UCXFcmOeXm7bcxBG3qPEiOkw",
-      icon: "brand-youtube"
-    },
-    {
-      name: "itch.io",
-      link: "https://aekaisato.itch.io/",
-      icon: "device-gamepad-2"
-    }
-  ];
+  import socialLinks from "src/content/social-links.json";
 </script>
 
 <div class="container flex">
