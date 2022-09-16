@@ -58,7 +58,7 @@
     line-height: 1.8;
     max-width: 73%;
   }
-  :global(.simple-content * img) {
+  :global(.simple-content * img:not(.lite-youtube-poster), .lite-youtube) {
     border-radius: 6px;
     width: 55%;
     max-height: 35vh;
