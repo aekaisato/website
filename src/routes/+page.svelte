@@ -166,13 +166,13 @@
     flex-direction: column;
   }
   .index-content-top {
-    flex: 3;
     margin: 3vh;
+    height: 75%;
   }
   .index-content-bottom {
-    flex: 1;
     margin-bottom: 3vh;
     flex-direction: row;
+    height: 25%;
   }
   .whatever-box {
     flex: 1;
