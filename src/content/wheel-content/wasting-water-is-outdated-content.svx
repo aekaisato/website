@@ -1,10 +1,9 @@
 <script>
-  import "lite-youtube-embed";
-  import { fade } from "svelte/transition";
+  import LiteYouTube from 'svelte-lite-youtube-embed'
 </script>
 
 <p /> <!-- for spacing -->
-<lite-youtube videoid="Sui0VBIAxW0" playlabel="Play: Wasting Water Is Outdated" in:fade />
+<LiteYouTube videoId="Sui0VBIAxW0" videoTitle="Play: Wasting Water Is Outdated" />
 
 In my senior year of high school, I got to be a board member of our school's Solar Boat club, despite never being in the club prior, and despite having no experience with Solar Boat. Why? They needed someone to make a PSA. Wasting Water Is Oudated was the result.
 

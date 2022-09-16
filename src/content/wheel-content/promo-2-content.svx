@@ -1,10 +1,9 @@
 <script>
-  import "lite-youtube-embed";
-  import { fade } from "svelte/transition";
+  import LiteYouTube from 'svelte-lite-youtube-embed'
 </script>
 
 <p /> <!-- for spacing -->
-<lite-youtube videoid="qfiWS8nbCKk" playlabel="Play: Khoury Promo 2" in:fade />
+<LiteYouTube videoId="qfiWS8nbCKk" videoTitle="Play: Khoury Promo 2" />
 
 This is a video made for the promotion of the Khoury College of Computer Sciences at Northeastern University. Alongside storyboarding and editing the video, all footage was shot by me. Since the video was turned it close to the end of the Spring 2022 semester, I'm not sure if it was ever released, though I am still rather happy with the result. However, due to me not having a gimbal at the time it was filmed, much of the footage shakes more than I am fully satisfied with.
 

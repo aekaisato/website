@@ -8,7 +8,7 @@
   const getContent = async (slug: string) => {
     let svxContent;
     try {
-      svxContent = (await import(`../content/wheel-content/${slug}-content.svx`)).default;
+      svxContent = (await import(`../../content/wheel-content/${slug}-content.svx`)).default;
     } catch (e) {
       svxContent = fallbackContent;
     }

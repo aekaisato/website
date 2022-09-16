@@ -1,10 +1,9 @@
 <script>
-  import "lite-youtube-embed";
-  import { fade } from "svelte/transition";
+  import LiteYouTube from 'svelte-lite-youtube-embed'
 </script>
 
 <p /> <!-- for spacing -->
-<lite-youtube videoid="iTFpAVQ0XQc" playlabel="Play: GAMENAME trailer" in:fade />
+<LiteYouTube videoId="iTFpAVQ0XQc" videoTitle="Play: GAMENAME trailer" />
 
 Galactic Adventures of Military Empires: New Advanced Missions Edition, abbreviated as GAMENAME (yes, we were a bit cheeky with the title), is a board game designed for an Intro to Game Development class. The game involves strategizing to take over the solar system across the game board. The rules for the game, mostly designed by other members of the group, are available [as a Google Doc](https://docs.google.com/document/d/1EFxb4APJ7F0t98DgfeSidSTS7buDfpfYL4LjLpZYuyA/edit?usp=sharing) (a PDF backup is available [here](/content-img/gamename-trailer/final-rules-document.pdf)).
 

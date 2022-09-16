@@ -1,10 +1,9 @@
 <script>
-  import "lite-youtube-embed";
-  import { fade } from "svelte/transition";
+  import LiteYouTube from 'svelte-lite-youtube-embed'
 </script>
 
 <p /> <!-- for spacing -->
-<lite-youtube videoid="AunudlZ3JoU" playlabel="Play: Mathematics of Data Models Mini-Project: A Scene" in:fade />
+<LiteYouTube videoId="AunudlZ3JoU" videoTitle="Play: Mathematics of Data Models Mini-Project: A Scene" />
 
 For this project, we were assigned to create some sort of scene, with objects we can somehow connect to concepts in the class. We were tasked to describe the scene and how it our class's concepts can be used to describe it. For this video, I create a very simple scene which I basically shoe-horned in concepts from class.
 

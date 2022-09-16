@@ -1,10 +1,9 @@
 <script>
-  import "lite-youtube-embed";
-  import { fade } from "svelte/transition";
+  import LiteYouTube from 'svelte-lite-youtube-embed'
 </script>
 
 <p /> <!-- for spacing -->
-<lite-youtube videoid="YQGxtmzyOr4" playlabel="Play: OA PTSA Winter Raffle Ad" in:fade />
+<LiteYouTube videoId="YQGxtmzyOr4" videoTitle="Play: OA PTSA Winter Raffle Ad" />
 
 My high school's PTSA wanted to better advertise the raffle event they were running. I was given complete creative control to work on a video to advertise the event by showcasing the baskets, and I wanted to make the video as "hyped-up" as possible. Once again, I worked with [Brandon Imai](https://www.linkedin.com/in/brandon-imai-725692204) on the video.
 

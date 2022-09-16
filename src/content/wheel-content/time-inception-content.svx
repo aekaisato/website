@@ -1,10 +1,9 @@
 <script>
-  import "lite-youtube-embed";
-  import { fade } from "svelte/transition";
+  import LiteYouTube from 'svelte-lite-youtube-embed'
 </script>
 
 <p /> <!-- for spacing -->
-<lite-youtube videoid="UHeER310W7Q" playlabel='Play: "Time" - Inception by Hans Zimmer // arr. by Anthony Wang | Virtual Orchestra' in:fade />
+<LiteYouTube videoId="UHeER310W7Q" videoTitle='Play: "Time" - Inception by Hans Zimmer // arr. by Anthony Wang | Virtual Orchestra' />
 
 During the 2020 quarantine, my friend [Anthony Wang](https://www.youtube.com/channel/UCLaTKE383BgO1XxAci5GSKQ) wanted to make a video for his arrangement of "Time" by Hans Zimmer, a part of the *Inception* soundtrack. Due to really tight time constraints with the video, the production ended up being a rather stressful experience.
 

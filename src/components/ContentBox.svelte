@@ -3,13 +3,16 @@
   import wheelContent from "src/functions/filter";
   import { selection, previousSelection } from "src/functions/wheel-selection";
   import { fade } from 'svelte/transition';
-  import { onDestroy, SvelteComponent, createEventDispatcher } from "svelte";
+  import { onMount, onDestroy, SvelteComponent, createEventDispatcher } from "svelte";
   import TablerIcon from "./TablerIcon.svelte";
   import { format, parseISO } from "date-fns";
   //@ts-ignore
   import fallbackContent from "src/content/wheel-content/fallback-content.svx";
-  import "lite-youtube-embed/src/lite-yt-embed.css"; // used in svx content files
+  //@ts-ignore
+  import loadingContent from "src/content/wheel-content/loading-content.svx";
+  // import "lite-youtube-embed/src/lite-yt-embed.css"; // used in svx content files
 
+  let hasMounted = false;
   let svxContent: SvelteComponent;
   let scrollMemory: {[key: string]: number} = {};
   let ignoreScrollEvent = false;
@@ -27,6 +30,8 @@
     }
   });
   onDestroy(unsubSelection);
+
+  onMount(() => {hasMounted = true});
 
   const getScrollHelperHeight = () => {
     const n = scrollMemory[wheelContent[$selection].slug] + containerHeight;
@@ -127,7 +132,7 @@
         </span>
       </div>
       <div class="flex svx-box">
-        <svelte:component this={svxContent}/>
+        <svelte:component this={hasMounted ? svxContent : loadingContent}/>
       </div>
     </div>
   </div>
@@ -171,7 +176,7 @@
     margin-top: 0;
     margin-bottom: 0.5em;
   }
-  :global(.svx-box * lite-youtube, .svx-box > lite-youtube, .svx-box * img, .svx-box > audio, .svx-box * audio) {
+  :global(.svx-box * lite-youtube, .svx-box > lite-youtube, .svx-box * .lite-youtube, .svx-box > .lite-youtube, .svx-box * img:not(.lite-youtube-poster), .svx-box > audio, .svx-box * audio) {
     border-radius: 6px;
     width: 55%;
     max-height: 35vh;

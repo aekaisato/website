@@ -1,10 +1,9 @@
 <script>
-  import "lite-youtube-embed";
-  import { fade } from "svelte/transition";
+  import LiteYouTube from 'svelte-lite-youtube-embed'
 </script>
 
 <p /> <!-- for spacing -->
-<lite-youtube videoid="ZoreL5kBRwU" playlabel="Play: CTRL" in:fade />
+<LiteYouTube videoId="ZoreL5kBRwU" videoTitle="Play: CTRL" />
 
 CTRL is a video made to describe the risks posed by ad tracking and personalization on the Internet. While I'm not happy with several aspects of the video in hindsight, I'm still decently proud of the editing and directing of this video.
 
