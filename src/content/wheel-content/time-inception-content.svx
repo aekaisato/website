@@ -1,0 +1,13 @@
+<script>
+  import "lite-youtube-embed";
+  import { fade } from "svelte/transition";
+</script>
+
+<p /> <!-- for spacing -->
+<lite-youtube videoid="UHeER310W7Q" playlabel='Play: "Time" - Inception by Hans Zimmer // arr. by Anthony Wang | Virtual Orchestra' in:fade />
+
+During the 2020 quarantine, my friend [Anthony Wang](https://www.youtube.com/channel/UCLaTKE383BgO1XxAci5GSKQ) wanted to make a video for his arrangement of "Time" by Hans Zimmer, a part of the *Inception* soundtrack. Due to really tight time constraints with the video, the production ended up being a rather stressful experience.
+
+I was in charge of editing the video portion of the project (someone else was doing the audio mixing). Because of the time constraints, I didn't want to run into any problems learning how to more elegantly do this, so I ended up manually moving and cropping each video to fit the frames I made. This bit me, hard, due to vast changes to the layout that were eventually required. In addition, tons of timing issues had to be fixed, as, despite all of our efforts to prevent desync, most of the submitted videos from students were desynced and required manual adjustment. The revision process was frantic, stressful, and at times frustrating, but the final video turned out, in my opinion, amazing. I also really like the section with the scrolling frames, which was an idea I came up with for the video.
+
+Oh, also: there's an Easter egg hidden at the end of the video (prior to the spiel given by Anthony after the song ends). No one thus far has found it without the help of someone that has already seen it. Give it a try! gl;hf!!

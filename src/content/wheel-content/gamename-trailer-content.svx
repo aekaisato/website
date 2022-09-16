@@ -1,0 +1,13 @@
+<script>
+  import "lite-youtube-embed";
+  import { fade } from "svelte/transition";
+</script>
+
+<p /> <!-- for spacing -->
+<lite-youtube videoid="iTFpAVQ0XQc" playlabel="Play: GAMENAME trailer" in:fade />
+
+Galactic Adventures of Military Empires: New Advanced Missions Edition, abbreviated as GAMENAME (yes, we were a bit cheeky with the title), is a board game designed for an Intro to Game Development class. The game involves strategizing to take over the solar system across the game board. The rules for the game, mostly designed by other members of the group, are available [as a Google Doc](https://docs.google.com/document/d/1EFxb4APJ7F0t98DgfeSidSTS7buDfpfYL4LjLpZYuyA/edit?usp=sharing) (a PDF backup is available [here](/content-img/gamename-trailer/final-rules-document.pdf)).
+
+The trailer video was entirely created within the span of half a day. During a playtest of the game in class, I brought my camera and took b-roll to make a trailer with. For whatever reason, I wanted a synthwave song with a time signature of 7/4, so I quickly composed a short song to use for the trailer. I then wrote the script, timed with the music, recorded it, and edited the video.
+
+At 1:10 of the video, a digital representation of the board is shown. This was something I quickly threw together in a few hours to aid with playtesting, as the draft game pieces we were using were extremely hard to deal with, so having a digitized game board helped us to more quickly playtest. This was created using the React framework. The website is available [here](https://strategy-game-board-thingy.vercel.app/), and the source code is available [on GitHub](https://github.com/aekaisato/strategy-game-board-thingy).
