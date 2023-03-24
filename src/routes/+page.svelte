@@ -119,7 +119,7 @@
 </svelte:head>
 
 <noscript>
-  <p>
+  <p class="noscript-desc">
     This page uses JavaScript. Please enable JavaScript and refresh the page.
     Alternatively, you can go to the simplified version of this page <a
       href="/simple">here</a
@@ -206,4 +206,7 @@
     width: 100vw;
     height: 100vh;
   }
+  .noscript-desc {
+      text-align: center;
+    }
 </style>
