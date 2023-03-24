@@ -2,10 +2,15 @@
   // import wheelContent from "src/content/wheel.json";
   import wheelContent from "src/functions/filter";
   import { selection, previousSelection } from "src/functions/wheel-selection";
-  import { fade } from 'svelte/transition';
-  import { onMount, onDestroy, SvelteComponent, createEventDispatcher } from "svelte";
+  import { fade } from "svelte/transition";
+  import {
+    onMount,
+    onDestroy,
+    SvelteComponent,
+    createEventDispatcher,
+  } from "svelte";
   import TablerIcon from "./TablerIcon.svelte";
-  import { tagHandler, dateHandler } from "src/functions/formatting"; 
+  import { tagHandler, dateHandler } from "src/functions/formatting";
   //@ts-ignore
   import fallbackContent from "src/content/wheel-content/fallback-content.svx";
   //@ts-ignore
@@ -14,7 +19,7 @@
 
   let hasMounted = false;
   let svxContent: SvelteComponent;
-  let scrollMemory: {[key: string]: number} = {};
+  let scrollMemory: { [key: string]: number } = {};
   let ignoreScrollEvent = false;
 
   const dispatch = createEventDispatcher();
@@ -24,40 +29,46 @@
   // woah is this janky dynamic imports?! heck yeah!
   const unsubSelection = selection.subscribe(async (value) => {
     try {
-      svxContent = (await import(`../content/wheel-content/${wheelContent[value].slug}-content.svx`)).default;
+      svxContent = (
+        await import(
+          `../content/wheel-content/${wheelContent[value].slug}-content.svx`
+        )
+      ).default;
     } catch (e) {
       svxContent = fallbackContent;
     }
   });
   onDestroy(unsubSelection);
 
-  onMount(() => {hasMounted = true});
+  onMount(() => {
+    hasMounted = true;
+  });
 
   const getScrollHelperHeight = () => {
     const n = scrollMemory[wheelContent[$selection].slug] + containerHeight;
     return isNaN(n) ? 0 : n - 1; // the minus one is to fix a dumb scrollbar thing
-  }
+  };
 
   // adapted from https://stackoverflow.com/questions/68047290/how-to-detect-scrollto-has-finished
   const scrollTo = (top: number, element: HTMLElement) => {
-    element.scrollTo({top: top, behavior: "smooth"});
-    return new Promise<void>(resolve => {
+    element.scrollTo({ top: top, behavior: "smooth" });
+    return new Promise<void>((resolve) => {
       const resolvePromise = () => {
         element.removeEventListener("scroll", scrollHandler);
         ignoreScrollEvent = false;
         resolve();
-      }
+      };
       const scrollHandler = () => {
         if (element.scrollTop == top) {
           ignoreScrollEvent = true;
           resolvePromise();
         }
-      }
+      };
       ignoreScrollEvent = true;
       element.addEventListener("scroll", scrollHandler);
       setTimeout(resolvePromise, 400); // resolve promise if length of transition has passed
-    })
-  }
+    });
+  };
 
   const saveAndRecallScroll = () => {
     if ($previousSelection != null && !ignoreScrollEvent) {
@@ -65,23 +76,24 @@
     }
     const scrollAmt = scrollMemory[wheelContent[$selection].slug];
     scrollTo(scrollAmt ? scrollAmt : 0, container);
-  }
+  };
 
   const handleWheel = (event: WheelEvent) => {
-    let toDispatch: { deltaY: number }
-    if (containerHeight !== container.scrollHeight &&
+    let toDispatch: { deltaY: number };
+    if (
+      containerHeight !== container.scrollHeight &&
       ((container.scrollTop > 0 &&
         container.scrollTop + containerHeight < container.scrollHeight) ||
-        ((container.scrollTop == 0 && event.deltaY > 0) ||
-          (container.scrollTop + containerHeight >= container.scrollHeight
-            && event.deltaY < 0)))
+        (container.scrollTop == 0 && event.deltaY > 0) ||
+        (container.scrollTop + containerHeight >= container.scrollHeight &&
+          event.deltaY < 0))
     ) {
       toDispatch = { deltaY: 0 };
     } else {
       toDispatch = event;
     }
     dispatch("wheelNoScroll", toDispatch);
-  }
+  };
 </script>
 
 <div
@@ -91,42 +103,46 @@
   bind:clientHeight={containerHeight}
 >
   {#key $selection}
-  <div class="flex content-box" transition:fade on:introstart={saveAndRecallScroll}>
     <div
-      class="scroll-memory-helper"
-      style={`min-height: calc(${getScrollHelperHeight()}px - 3vh);`}
+      class="flex content-box"
+      transition:fade
+      on:introstart={saveAndRecallScroll}
     >
-      <h1>{wheelContent[$selection].name}</h1>
-      <div class="flex sub-box">
-        <span style="filter: invert(0.35); display: inline;">
-          <span>
-            <TablerIcon
-              icon="clock"
-              alt="Date created"
-              width={20}
-              style="vertical-align: bottom"
-            />
-            {dateHandler(wheelContent[$selection].date)}
+      <div
+        class="scroll-memory-helper"
+        style={`min-height: calc(${getScrollHelperHeight()}px - 3vh);`}
+      >
+        <h1>{wheelContent[$selection].name}</h1>
+        <div class="flex sub-box">
+          <span style="filter: invert(0.35); display: inline;">
+            <span>
+              <TablerIcon
+                icon="clock"
+                alt="Date created"
+                width={20}
+                style="vertical-align: bottom"
+              />
+              {dateHandler(wheelContent[$selection].date)}
+            </span>
+            <span style="margin-left: 0.2em; margin-right: 0.2em;">
+              {"⸱"}
+            </span>
+            <span>
+              <TablerIcon
+                icon="tag"
+                alt="Tags"
+                width={20}
+                style="vertical-align: bottom"
+              />
+              {tagHandler(wheelContent[$selection].tags)}
+            </span>
           </span>
-          <span style="margin-left: 0.2em; margin-right: 0.2em;">
-            {"⸱"}
-          </span>
-          <span>
-            <TablerIcon
-              icon="tag"
-              alt="Tags"
-              width={20}
-              style="vertical-align: bottom"
-            />
-            {tagHandler(wheelContent[$selection].tags)}
-          </span>
-        </span>
-      </div>
-      <div class="flex svx-box">
-        <svelte:component this={hasMounted ? svxContent : loadingContent}/>
+        </div>
+        <div class="flex svx-box">
+          <svelte:component this={hasMounted ? svxContent : loadingContent} />
+        </div>
       </div>
     </div>
-  </div>
   {/key}
 </div>
 
@@ -167,7 +183,15 @@
     margin-top: 0;
     margin-bottom: 0.5em;
   }
-  :global(.svx-box * lite-youtube, .svx-box > lite-youtube, .svx-box * .lite-youtube, .svx-box > .lite-youtube, .svx-box * img:not(.lite-youtube-poster), .svx-box > audio, .svx-box * audio) {
+  :global(
+      .svx-box * lite-youtube,
+      .svx-box > lite-youtube,
+      .svx-box * .lite-youtube,
+      .svx-box > .lite-youtube,
+      .svx-box * img:not(.lite-youtube-poster),
+      .svx-box > audio,
+      .svx-box * audio
+    ) {
     border-radius: 6px;
     width: 55%;
     max-height: 35vh;

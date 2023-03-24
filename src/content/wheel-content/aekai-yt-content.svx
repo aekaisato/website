@@ -1,5 +1,5 @@
 <script>
-  import LiteYouTube from 'svelte-lite-youtube-embed';
+  import LiteYouTube from 'src/components/LiteYouTube.svelte';
 </script>
 
 <p /> <!-- for spacing -->
