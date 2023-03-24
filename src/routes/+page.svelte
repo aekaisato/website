@@ -121,7 +121,7 @@
 <noscript>
   <p>
     This page uses JavaScript. Please enable JavaScript and refresh the page.
-    Additionally, you can go to the simplified version of this page <a
+    Alternatively, you can go to the simplified version of this page <a
       href="/simple">here</a
     >.
   </p>
