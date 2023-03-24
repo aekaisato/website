@@ -4,24 +4,42 @@
   import fallbackContent from "src/content/wheel-content/fallback-content.svx";
   import aboutMeContent from "src/content/about-me.txt?raw";
   import socialLinks from "src/content/social-links.json";
-  import { tagHandler, dateHandler } from "src/functions/formatting"; 
+  import { tagHandler, dateHandler } from "src/functions/formatting";
 
-  const getContent = async (slug: string) => {
+  const getContentPath = (slug: string) => {
+    return `../../content/wheel-content/${slug}-content.svx`;
+  };
+
+  const contentModules = import.meta.glob(
+    "../../content/wheel-content/*-content.svx",
+    { eager: true }
+  );
+
+  const getContent = (slug: string) => {
     let svxContent;
     try {
-      svxContent = (await import(`../../content/wheel-content/${slug}-content.svx`)).default;
+      svxContent = contentModules[getContentPath(slug)].default;
     } catch (e) {
       svxContent = fallbackContent;
     }
     return svxContent;
-  }
+  };
 </script>
 
 <div class="simple-content">
-  <p><i>This is a simplified version of my portfolio page. If you're seeing this, you're likely on a mobile device. If you're on a desktop and would like to view the full-fat page, click <a href="/?bypass-redirect=true">here</a>.</i></p>
+  <p>
+    <i
+      >This is a simplified version of my portfolio page. If you're seeing this,
+      you're likely on a mobile device. If you're on a desktop and would like to
+      view the full-fat page, click <a href="/?bypass-redirect=true">here</a
+      >.</i
+    >
+  </p>
   <br />
   <p>{aboutMeContent}</p>
-  <div style="display: flex; flex-direction: row; justify-content: space-evenly">
+  <div
+    style="display: flex; flex-direction: row; justify-content: space-evenly"
+  >
     {#each socialLinks as sl, i}
       <a href={sl.link}>{sl.name}</a>
     {/each}
@@ -42,9 +60,9 @@
       <sub>{dateHandler(wc.date) + " ⸱ " + tagHandler(wc.tags)}</sub>
       {#await getContent(wc.slug)}
         <div />
-        {:then content}
+      {:then content}
         <svelte:component this={content} />
-        {:catch error}
+      {:catch error}
         <p>error</p>
       {/await}
       <br />
@@ -55,7 +73,9 @@
 <style>
   .simple-content {
     margin: 5% auto;
-    font-family: "Uncut Sans", uncut-sans, -apple-system, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: "Uncut Sans", uncut-sans, -apple-system, -apple-system,
+      BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+      "Open Sans", "Helvetica Neue", sans-serif;
     font-size: 16px;
     line-height: 1.8;
     max-width: 73%;

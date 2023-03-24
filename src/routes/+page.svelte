@@ -18,25 +18,25 @@
   const newHashFromIndex = (index: number) => {
     // if this is changed also change it in ProjectWheel
     goto(`#${wheelContent[index].slug}`);
-  }
+  };
 
   const updatePlus = (x: number = 1) => {
     // selectionTweened.update(n => (n + 1) % wheelContent.length); // wraparound
     selectionTweened.update((n) => {
-      const i = Math.min((n + x), wheelContent.length - 1);
+      const i = Math.min(n + x, wheelContent.length - 1);
       newHashFromIndex(i);
       return i;
     });
-  }
+  };
 
   const updateMinus = (x: number = 1) => {
     // selectionTweened.update(n => n <= 0 ? wheelContent.length + (n - 1) : (n - 1)); // wraparound
     selectionTweened.update((n) => {
-      const i = Math.max((n - x), 0);
+      const i = Math.max(n - x, 0);
       newHashFromIndex(i);
       return i;
     });
-  }
+  };
 
   const handleKeypress = (e: KeyboardEvent) => {
     if (e.key == "j" || e.key == "ArrowDown") {
@@ -44,12 +44,15 @@
     } else if (e.key == "k" || e.key == "ArrowUp") {
       updateMinus();
     }
-  }
+  };
 
-  const handleScroll = (e: WheelEvent | { detail: { deltaY: number, deltaMode: number } }) => {
+  const handleScroll = (
+    e: WheelEvent | { detail: { deltaY: number; deltaMode: number } }
+  ) => {
     let deltaY = 0;
     let deltaMode = 0;
-    if (typeof e.detail == "object") { // hopefully this is stable lol
+    if (typeof e.detail == "object") {
+      // hopefully this is stable lol
       deltaY = e.detail.deltaY;
       deltaMode = e.detail.deltaMode;
     } else {
@@ -57,7 +60,7 @@
       deltaMode = (<WheelEvent>e).deltaMode;
     }
     additiveUntimedDebounce(deltaY);
-  }
+  };
 
   let dySum = 0;
   let sumTimer: any;
@@ -72,7 +75,7 @@
       registerScroll(dySum);
       dySum = dySum % threshold;
     }
-  }
+  };
 
   const registerScroll = (deltaY: number) => {
     const threshold = SCROLL_THRESHOLD;
@@ -86,7 +89,7 @@
       const x = Math.floor(Math.sqrt(Math.abs(deltaY) / threshold));
       fn(x);
     }
-  }
+  };
 
   const changeHash = (hash: string) => {
     const slug = hash.substring(hash.lastIndexOf("#") + 1);
@@ -94,19 +97,20 @@
     if (index) {
       selectionTweened.set(index);
     }
-  }
+  };
 
   const handleHashChange = (event: HashChangeEvent) => {
-    changeHash((new URL(event.newURL)).hash);
-  }
+    changeHash(new URL(event.newURL).hash);
+  };
 
-  onMount(() => { 
-    changeHash($page.url.hash)
-    const bypassRedirect = $page.url.searchParams.get("bypass-redirect") === "true";
+  onMount(() => {
+    changeHash($page.url.hash);
+    const bypassRedirect =
+      $page.url.searchParams.get("bypass-redirect") === "true";
     if (!bypassRedirect && viewportW < viewportH) {
       location.href = "/simple";
     }
-  })
+  });
 </script>
 
 <svelte:head>
@@ -115,10 +119,19 @@
 </svelte:head>
 
 <noscript>
-  <p>This page uses JavaScript. Please enable JavaScript and refresh the page. Additionally, you can go to the simplified version of this page <a href="/simple">here</a>, although it still uses JavaScript to render, something I'm currently looking for a way to rectify. Thanks.</p>
+  <p>
+    This page uses JavaScript. Please enable JavaScript and refresh the page.
+    Additionally, you can go to the simplified version of this page <a
+      href="/simple">here</a
+    >.
+  </p>
 </noscript>
 
-<div class="container flex" bind:clientHeight={viewportH} bind:clientWidth={viewportW}>
+<div
+  class="container flex"
+  bind:clientHeight={viewportH}
+  bind:clientWidth={viewportW}
+>
   <div class="bg-img-box flex" on:wheel|preventDefault={handleScroll}>
     <BackgroundImage />
   </div>
@@ -127,17 +140,18 @@
   </div>
   <div class="index-content flex">
     <div class="flex index-content-top">
-      <ContentBox on:wheelNoScroll={handleScroll}/>
+      <ContentBox on:wheelNoScroll={handleScroll} />
     </div>
     <div class="flex index-content-bottom">
-      <div class="whatever-box flex" on:wheel|preventDefault={handleScroll}>
-      </div>
+      <div class="whatever-box flex" on:wheel|preventDefault={handleScroll} />
       <div class="about-me-box flex">
         <AboutMeBox />
       </div>
     </div>
   </div>
 </div>
+
+<svelte:window on:keydown={handleKeypress} on:hashchange={handleHashChange} />
 
 <style>
   :global(p, div, span) {
@@ -193,5 +207,3 @@
     height: 100vh;
   }
 </style>
-
-<svelte:window on:keydown={handleKeypress} on:hashchange={handleHashChange} />
