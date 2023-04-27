@@ -1,5 +1,5 @@
 <script lang="ts">
-  const tablerUrl = "https://cdn.jsdelivr.net/npm/@tabler/icons@latest/icons/";
+  const tablerUrl = "https://unpkg.com/@tabler/icons@2.17.0/icons/";
   export let icon = "";
   export let alt = "";
   export let style = "";
